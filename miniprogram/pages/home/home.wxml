@@ -1,0 +1,4 @@
+<!--pages/home/home.wxml-->
+<view class="pic">
+  <image src="{{item}}" class="img" wx:for="{{list}}" mode="scaleToFill"></image>
+</view>

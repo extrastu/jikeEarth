@@ -1,0 +1,1 @@
+"/Applications/wechatwebdevtools.app/Contents/MacOS/cli" cloud functions deploy --e jingtu-123 --n quickstartFunctions --r --project "/Users/extrastu/WeChatProjects/miniprogram-8"

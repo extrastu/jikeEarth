@@ -1,0 +1,20 @@
+/* pages/home/home.wxss */
+page {
+  height: 100%
+}
+.pic{
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  grid-template-rows: 33.33% 33.33% 33.33%;
+  height: 100%
+}
+/* .earth {
+  display: flex;
+  height: 550rpx;
+  justify-content: center;
+  align-items: center;
+} */
+
+.img{
+  width: 100%;
+}
