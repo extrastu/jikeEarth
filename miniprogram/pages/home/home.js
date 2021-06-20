@@ -5,15 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pic_url: "",
-
-    list1: [],
-    list2: [],
-    list3: [],
-    list4: [],
-    list5: [],
-    list6: [],
-    list7: [],
+    list: [],
   },
 
   /**
@@ -23,8 +15,8 @@ Page({
     wx.vibrateShort({
       type: "type",
     });
-   
-    this.getDate()
+
+    this.getDate();
   },
 
   /**
@@ -63,95 +55,40 @@ Page({
   onShareAppMessage: function () {},
   getHourUrl: function (hourUrl) {
     const hour = dayjs().hour();
-    let { list7, list1, list2, list3, list4, list5, list6 } = this.data;
+    let { list7, list1, list2, list3, list4, list5, list6, list } = this.data;
     let pic_url = "";
+    let arr =[]
     for (let i = 0; i < 8; i++) {
-      pic_url =
-        "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
-        hourUrl+
-        "_0_" +
-        i +
-        ".png";
-      list1.push(pic_url);
-    }
-    for (let i = 0; i < 8; i++) {
-      pic_url =
-        "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
-        hourUrl +
-        "_1_" +
-        i +
-        ".png";
-      list2.push(pic_url);
-    }
-    for (let i = 0; i < 8; i++) {
-      pic_url =
-        "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
-        hourUrl +
-        "_2_" +
-        i +
-        ".png";
-      list3.push(pic_url);
-    }
-    for (let i = 0; i < 8; i++) {
-      pic_url =
-        "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
-        dayjs().format("YYYY/MM/DD") +
-        "/130000_3_" +
-        i +
-        ".png";
-      list4.push(pic_url);
-    }
-    for (let i = 0; i < 8; i++) {
-      pic_url =
-        "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
-        dayjs().format("YYYY/MM/DD") +
-        "/130000_4_" +
-        i +
-        ".png";
-      list5.push(pic_url);
-    }
-    for (let i = 0; i < 8; i++) {
-      pic_url =
-        "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
-        dayjs().format("YYYY/MM/DD") +
-        "/130000_5_" +
-        i +
-        ".png";
-      list6.push(pic_url);
-    }
-    for (let i = 0; i < 8; i++) {
-      pic_url =
-        "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
-        dayjs().format("YYYY/MM/DD") +
-        "/130000_6_" +
-        i +
-        ".png";
-      list7.push(pic_url);
+      list.push([])
+      for (let j = 0; j < 8; j++) {
+        pic_url =
+          "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
+          hourUrl +
+          "_"+ i+"_" +
+          j +
+          ".png";
+        list[i].push(pic_url);
+      }
     }
 
+    
     this.setData({
-      list7,
-      list1,
-      list2,
-      list3,
-      list4,
-      list5,
-      list6,
+      
+      list
     });
   },
-  getDate:function(){
+  getDate: function () {
     let that = this;
     wx.request({
-      url: 'https://himawari8-dl.nict.go.jp/himawari8/img/D531106/latest.json',
+      url: "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/latest.json",
       header: {
-        'content-type': 'application/json' // 默认值
+        "content-type": "application/json", // 默认值
       },
-      success(res){
+      success(res) {
         console.log(res.data.date);
-       console.log((dayjs(res.data.date).format("YYYY/MM/DD/hhmmss")));
-       that.getHourUrl(dayjs(res.data.date).format("YYYY/MM/DD/hhmmss"));
-      }
-    })
-    
-  }
+        console.log(dayjs(res.data.date).format("YYYY/MM/DD/hhmmss"));
+        that.getHourUrl(dayjs(res.data.date).format("YYYY/MM/DD/hhmmss"));
+      },
+    });
+  },
 });

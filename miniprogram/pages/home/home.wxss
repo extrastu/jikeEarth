@@ -1,19 +1,18 @@
 /* pages/home/home.wxss */
 page {
-  height: 100%
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
 }
 .pic{
-  display: grid;
-  grid-template-columns: 33.33% 33.33% 33.33%;
-  grid-template-rows: 33.33% 33.33% 33.33%;
-  height: 100%
-}
-/* .earth {
   display: flex;
-  height: 550rpx;
-  justify-content: center;
-  align-items: center;
-} */
+  flex-wrap: nowrap;  
+  margin-top: 10vh;
+}
+.pic view{
+  width: 33.3%;
+  font-size: 0;
+}
 
 .img{
   width: 100%;
