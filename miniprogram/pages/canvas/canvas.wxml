@@ -1,0 +1,5 @@
+<!--pages/canvas/canvas.wxml-->
+<view>
+  <canvas type="2d" id="earth" style="width:{{device.windowWidth}}px;height:{{device.windowHeight}}px;"
+    bindlongtap='getShareImagePath'></canvas>
+</view>

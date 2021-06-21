@@ -6,6 +6,8 @@ Page({
    */
   data: {
     list: [],
+    Pindex: 2,
+    now:dayjs().format("YYYY/MM/DD/ HH:mm:ss")
   },
 
   /**
@@ -55,25 +57,24 @@ Page({
   onShareAppMessage: function () {},
   getHourUrl: function (hourUrl) {
     const hour = dayjs().hour();
-    let { list7, list1, list2, list3, list4, list5, list6, list } = this.data;
+    let {
+      list,
+      Pindex
+    } = this.data;
     let pic_url = "";
-    let arr =[]
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < Pindex; i++) {
       list.push([])
-      for (let j = 0; j < 8; j++) {
+      for (let j = 0; j < Pindex; j++) {
         pic_url =
-          "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/8d/550/" +
+          "https://himawari8-dl.nict.go.jp/himawari8/img/D531106/"+Pindex+"d/550/" +
           hourUrl +
-          "_"+ i+"_" +
+          "_" + i + "_" +
           j +
           ".png";
         list[i].push(pic_url);
       }
     }
-
-    
     this.setData({
-      
       list
     });
   },
@@ -86,9 +87,40 @@ Page({
       },
       success(res) {
         console.log(res.data.date);
-        console.log(dayjs(res.data.date).format("YYYY/MM/DD/hhmmss"));
-        that.getHourUrl(dayjs(res.data.date).format("YYYY/MM/DD/hhmmss"));
+        console.log(dayjs(res.data.date).format("YYYY/MM/DD/HHmmss"));
+        that.getHourUrl(dayjs(res.data.date).format("YYYY/MM/DD/HHmmss"));
       },
     });
   },
+
+  createEarthImg: function (IMAGE_URL) {
+    // 创建离屏 2D canvas 实例
+    const canvas = wx.createOffscreenCanvas({
+      type: '2d',
+      width: 300,
+      height: 150
+    })
+    // 获取 context。注意这里必须要与创建时的 type 一致
+    const context = canvas.getContext('2d')
+
+    // 创建一个图片
+    const image = canvas.createImage()
+    // 等待图片加载
+    image.src = IMAGE_URL
+    image.onload = () => {
+      console.log('加载完成')
+    };
+    image.onerror = () => {
+      console.log('加载失败')
+    }
+
+    // 把图片画到离屏 canvas 上
+    context.clearRect(0, 0, 300, 150)
+    context.drawImage(image, 0, 0, 300, 150)
+
+    // 获取画完后的数据
+    const imgData = context.getImageData(0, 0, 300, 150)
+
+    console.log(imgData);
+  }
 });

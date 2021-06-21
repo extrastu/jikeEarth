@@ -1,7 +1,11 @@
 <!--pages/home/home.wxml-->
 <view class="pic">
-  <view wx:for="{{list}}">
-    <image src="{{pic}}" class="img" wx:for="{{item}}" wx:for-item="pic" mode="widthFix"></image>
+  <view wx:for="{{list}}" wx:if="{{index<Pindex}}" style="width:{{100/Pindex}}%">
+    <image src="{{pic}}" class="img" wx:for="{{item}}" wx:for-item="pic" mode="widthFix" lazy-load="{{ true }}"></image>
   </view>
 </view>
 
+<!-- <view class="info">
+  <view class="title padding color-white font-30">即刻地球</view>
+  <view class="padding color-white item">现在时间：{{now}}</view>
+</view> -->

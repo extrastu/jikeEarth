@@ -4,16 +4,34 @@ page {
   overflow: hidden;
   background: #000000;
 }
-.pic{
+
+.pic {
   display: flex;
-  flex-wrap: nowrap;  
-  margin-top: 10vh;
-}
-.pic view{
-  width: 33.3%;
-  font-size: 0;
+  flex-wrap: nowrap;
+  margin-top: 20vh;
 }
 
-.img{
-  width: 100%;
+.pic view {
+  width: 12.5%;
+  font-size: 0;
+  margin: 0px;
 }
+
+.img {
+  width: 100%;
+  margin: 0px;
+}
+
+.time {
+  color: white;
+  text-align: center;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border-radius: 10px;
+  width: 80%;
+  margin:  20rpx auto;
+}
+
